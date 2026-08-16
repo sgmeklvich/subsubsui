@@ -5,7 +5,7 @@ function App() {
 
   useEffect(() => {
     // apiUrl will be provided by DigitalOcean App Platform config
-    const apiUrl = process.env.apiUrl;
+    const apiUrl = process.env.REACT_APP_PUBLIC_URL;
     
     fetch(`${apiUrl}/api/health`)
       .then((res) => res.json())
