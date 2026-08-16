@@ -5,7 +5,7 @@ function App() {
 
   useEffect(() => {
     // VITE_API_URL will be provided by DigitalOcean App Platform config
-    //const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+    const apiUrl = process.env.apiUrl;
     
     fetch(`${apiUrl}/api/health`)
       .then((res) => res.json())
