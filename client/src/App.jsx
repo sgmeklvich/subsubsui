@@ -4,7 +4,7 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // VITE_API_URL will be provided by DigitalOcean App Platform config
+    // apiUrl will be provided by DigitalOcean App Platform config
     const apiUrl = process.env.apiUrl;
     
     fetch(`${apiUrl}/api/health`)
