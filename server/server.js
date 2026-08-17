@@ -1,13 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const pool = require('./db');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 // Example API endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Backend is running smoothly!' });
+app.get('/api/health', async(req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ status: 'Database is running smoothly!', time:result.rows[0].now });
+} catch (err){
+    console.error(err.message);
+    res.status(500).send('Server error');
 });
 
 // Use DigitalOcean's dynamic port or default to 8080
