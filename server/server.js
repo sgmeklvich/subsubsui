@@ -14,6 +14,7 @@ app.get('/api/health', async(req, res) => {
 } catch (err){
     console.error(err.message);
     res.status(500).send('Server error');
+  }
 });
 
 // Use DigitalOcean's dynamic port or default to 8080
