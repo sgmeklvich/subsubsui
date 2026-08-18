@@ -3,8 +3,9 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  // Force SSL if DATABASE_URL is defined (safe for both cloud production and secure local connections)
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+  ssl: {
+    rejectUnauthorized: false // This bypasses the self-signed certificate error
+  }
 });
 
 module.exports = pool;
