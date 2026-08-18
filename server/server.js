@@ -13,7 +13,7 @@ app.get('/api/health', async(req, res) => {
     res.json({ status: 'Database is running smoothly!', time:result.rows[0].now });
 } catch (err){
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({status:'DB server error'});
   }
 });
 
