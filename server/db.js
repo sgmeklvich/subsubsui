@@ -9,7 +9,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   ssl: {
     rejectUnauthorized: true, 
-    ca: process.env.CA_CERT,
+    ca: process.env.DATABASE_CA_CERT,
   },
 
   max: 10,                     // Maximum connections in pool
