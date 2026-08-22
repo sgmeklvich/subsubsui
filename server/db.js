@@ -2,6 +2,15 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: true, // This bypasses the self-signed certificate error
+    ca: process.env.CA_CERT,
+  }
+});
+
+/*
+const pool = new Pool({
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || "25060"),
   database: process.env.DB_NAME,
@@ -27,19 +36,3 @@ const pool = new Pool({
 */
 module.exports = pool;
 
-/*
-import { Pool } from "pg";
-
-export const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || "25060"),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  ssl: ca ? { rejectUnauthorized: true, ca } : undefined,
-
-  max: 10,                     // Maximum connections in pool
-  idleTimeoutMillis: 30000,    // Close idle connections after 30s
-  connectionTimeoutMillis: 5000 // Timeout for new connections
-});
-*/
